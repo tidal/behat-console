@@ -14,10 +14,12 @@
     "prefer-stable": true,
     "require": {
         "behat/behat": "^3.3",
-        "symfony/console": "^3.2"
+        "symfony/console": "^3.2",
+        "symfony/expression-language": "^3.2"
     },
     "require-dev": {
-        "atoum/atoum": "^3.0"
+        "atoum/atoum": "^3.0",
+        "atoum/stubs": "^2.5"
     },
     "autoload": {
         "psr-4": {
@@ -26,7 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "unit\\Tidal\\Behat\\ConsoleExtension\\": "tests/unit"
+            "Tidal\\Behat\\ConsoleExtension\\tests\\units\\": "tests/unit"
         }
     }
 }
