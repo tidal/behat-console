@@ -10,6 +10,7 @@
 namespace Tidal\Behat\ConsoleExtension\tests\units\Context\ContextClass;
 
 use atoum;
+use Tidal\Behat\ConsoleExtension\Context\ContextClass\ClassResolvingException;
 
 /**
  * Class Tidal\Behat\ConsoleExtension\tests\units\Context\ContextClass\ClassResolver
@@ -44,6 +45,23 @@ class ClassResolver extends atoum
             ->then()
             ->boolean($this->testedInstance->supportsClass($cls))
             ->isFalse()
+        ;
+    }
+
+    public function test_does_not_resolve_invalid_namespace()
+    {
+        $cls = 'foo:bar';
+        $this
+            // creation of a new instance of the tested class
+            ->given($resolver = $this->newTestedInstance)
+            ->then()
+            ->exception(
+                function() use($resolver, $cls) {
+                    // This code throws an exception
+                    $resolver->resolveClass($cls);
+                }
+            )
+            ->isInstanceOf(ClassResolvingException::class)
         ;
     }
 }

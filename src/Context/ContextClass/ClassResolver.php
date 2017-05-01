@@ -40,6 +40,16 @@ class ClassResolver implements ClassResolverInterface
      */
     public function resolveClass($contextClass)
     {
+        if (!$this->supportsClass($contextClass)) {
+            throw new ClassResolvingException(
+                sprintf(
+                    "Context class '%s' not supported by %s",
+                    $contextClass,
+                    __CLASS__
+                )
+            );
+        }
+
         return '';
     }
 }
